@@ -1,0 +1,21 @@
+	int maxSumIS(int arr[], int n)  
+	{  
+	    // Your code goes here
+	      vector<int>dp;
+	    dp.push_back(arr[0]);
+	    
+	    for(int i=1;i<n;i++){
+	        int res = arr[i];
+	        for(int j=0;j<dp.size();j++){
+	            if(arr[i] > arr[j])
+	                res = max(res,dp[j]+arr[i]);
+	        }
+	        dp.push_back(res);
+	    }
+	    
+	    int ans = 0;
+	    for(int i=0;i<dp.size();i++)
+	        ans = max(ans,dp[i]);
+	       
+	    return ans;
+	}  
