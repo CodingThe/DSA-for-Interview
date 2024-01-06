@@ -1,0 +1,34 @@
+void rearrange(int arr[], int n) {
+    queue<int> pos;
+    queue<int> neg;
+    
+    
+    for(int i=0; i < n; i++)
+    {
+        if( arr[i] > -1 )
+        pos.push( arr[i] );
+        else
+        neg.push( arr[i] );
+    }
+    
+    
+    
+    int i= 0;
+    while( !pos.empty() || !neg.empty() )
+    {
+        if( !pos.empty() )
+        {
+            arr[i]= pos.front();
+            pos.pop();
+            i++;
+        }
+        
+        if( !neg.empty() )
+        {
+            arr[i] = neg.front();
+            neg.pop();
+            i++;
+        }
+        
+    } 
+}
