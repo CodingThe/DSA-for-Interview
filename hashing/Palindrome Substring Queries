@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool isPalistr(string s, int l, int r){
+    string str=s.substr(l,r-l+1);
+    string x=str;
+    reverse(x.begin(),x.end());
+    return (str==x);
+}
+int main()
+{
+    string s;
+    cin>>s;
+    int l,r;
+    cin>>l>>r;
+    bool pali=isPalistr(s,l-1,r-1);
+    if(pali){
+        cout<<"YES"<<endl;
+    }
+    else{
+        cout<<"NO"<<endl;
+    }
+
+    return 0;
+}
