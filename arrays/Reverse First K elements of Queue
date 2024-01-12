@@ -1,0 +1,12 @@
+  queue<int> modifyQueue(queue<int> q, int k) {
+        // add code here.
+        stack<int>st;
+        for(auto it:q.begin();auto it<k){
+            st.push(it);
+        }
+         for(auto it:q.begin();auto it<k){
+            it=st.top();
+            st.pop();
+        }
+        
+    }
