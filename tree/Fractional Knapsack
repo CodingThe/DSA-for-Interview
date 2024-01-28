@@ -1,0 +1,21 @@
+ double fractionalKnapsack(int W, Item arr[], int n)
+    {
+        // Your code here
+         vector<pair<double,int>>sack;
+        for(int obj = 0; obj < n ; obj++){
+            double val = double(arr[obj].value)/ double(arr[obj].weight);
+            sack.push_back({val,obj});
+        }
+        sort(sack.begin(),sack.end(),greater<pair<double,int>>());
+        int netWeight = W;
+        double profit = 0,idx = 0;
+        while( idx < n && arr[sack[idx].second].weight <= netWeight ){
+          profit += arr[sack[idx].second].value;
+          netWeight -= arr[sack[idx].second].weight;
+          idx++;
+        }
+        if( idx < n && arr[sack[idx].second].weight > netWeight)
+         profit += sack[idx].first * netWeight ;
+        
+        return profit;
+    }
