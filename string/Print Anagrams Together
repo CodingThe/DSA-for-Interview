@@ -1,0 +1,21 @@
+ vector<vector<string> > Anagrams(vector<string>& string_list) {
+        //code here
+        vector<vector<string>>v;
+        unordered_set<string>s;
+        for(string str:string_list){
+            sort(str.begin(),str.end());
+            s.insert(str);
+        }
+        for(auto stro:s){
+            vector<string>vec;
+              for(string str:string_list){
+                  string sr=str;
+               sort(str.begin(),str.end());
+               if(str==stro){
+                   vec.push_back(sr);
+               }
+        }
+        v.push_back(vec);
+        }
+        return v;
+    }
