@@ -1,0 +1,22 @@
+    string findLongestWord(string S, vector<string> d) {
+        // code here
+        string res="";
+        for(string str:d){
+            int x=0;
+            int count=0;
+            string s=str;
+            for(int i=0;i<S.size();i++){
+                if(s[x]==S[i]){
+                    count++;
+                    x++;
+                }
+            }
+            if(count==s.size() and count>res.size()){
+                res=s;
+            }
+            if(count==s.size() and count==res.size()){
+                res=min(s,res);
+            }
+        }
+        return res;
+    }
