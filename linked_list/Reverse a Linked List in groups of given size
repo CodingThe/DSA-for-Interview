@@ -1,0 +1,34 @@
+class Solution
+{
+    public:
+    void vecrev(vector<int>&v,int k){
+        int i=0;
+        while(i+k<v.size()){
+            if(i+k<v.size()){
+                reverse(v.begin()+i,v.begin()+i+k);
+                i=i+k;
+            }
+        }
+        if(i<v.size());
+        reverse(v.begin()+i,v.end());
+    }
+    struct node *reverseIt (struct node *head, int k)
+    { 
+        // Complete this method
+        vector<int>v;
+        node *curr=head;
+        while(curr!=NULL){
+            v.push_back(curr->data);
+            curr=curr->next;
+        }
+        vecrev(v,k);
+        curr=head;
+        int i=0;
+         while(curr!=NULL){
+            curr->data=v[i];
+            i++;
+            curr=curr->next;
+        }
+        return head;
+    }
+};
