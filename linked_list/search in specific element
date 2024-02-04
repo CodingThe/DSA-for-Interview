@@ -1,0 +1,35 @@
+int search(node *head,int x){
+    if(head==NULL){
+        return -1;
+    }
+    int count=1;
+    node *temp=head;
+    while(temp!=NULL){
+        if(temp->data==x){
+            return count;
+        }
+        else{
+            count++;
+            temp=temp->next;
+        }
+    }
+    return -1;
+}
+
+int searchrec(node *head, int x){
+    if(head==NULL) return -1;
+    if(head->data==x) return 1;
+    else{
+        int res=searchrec(head->next,x);
+        if(res==-1) return -1;
+        else return res+1;
+    }
+}
+int main(){
+ node* head=new node(1000);
+ head->next=new node(2000);
+ head->next->next=new node(3000);
+ int q=search(head,3000);
+ cout<<q<<endl;
+ int z=searchrec(head,3000);
+ cout<<z<<endl;
