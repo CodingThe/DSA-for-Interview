@@ -1,0 +1,28 @@
+void rev(vector<int>& v, int k) {
+    int i = 0;
+    while (i + k <= v.size()) { // Corrected loop condition
+        reverse(v.begin() + i, v.begin() + i + k);
+        i = i + 2 * k;
+    }
+    if (i < v.size()) { // If there are remaining elements less than k, reverse them
+        reverse(v.begin() + i, v.end());
+    }
+}
+
+Node* reverseAlternateKNodes(Node* head, int k) {
+    vector<int> v;
+    Node* temp = head;
+    while (temp != NULL) {
+        v.push_back(temp->data);
+        temp = temp->next;
+    }
+    rev(v, k);
+    int i = 0;
+    temp = head;
+    while (temp != NULL) {
+        temp->data = v[i];
+        i++;
+        temp = temp->next;
+    }
+    return head;
+}
