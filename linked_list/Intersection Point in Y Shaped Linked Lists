@@ -1,0 +1,52 @@
+int intersectPoint(Node* head1, Node* head2)
+{
+    // Your Code Here
+//     unordered_set<Node*>s;
+//     Node* temp=head1;
+//     while(temp!=NULL){
+//         s.insert(temp);
+//         temp=temp->next;
+//     }
+//     temp=head2;
+//     while(temp!=NULL){
+//         if(s.find(temp)!=s.end()){
+//             return temp->data;
+//             break;
+//         }
+//         temp=temp->next;
+//     }
+//   return -1;
+int count1=0;
+int count2=0;
+Node *curr1=head1;
+while(curr1!=NULL){
+    count1++;
+    curr1=curr1->next;
+}
+Node *curr2=head2;
+while(curr2!=NULL){
+    count2++;
+    curr2=curr2->next;
+}
+int x=abs(count1-count2);
+curr1=head1;
+curr2=head2;
+if(count1>count2){
+   while(x--){
+       curr1=curr1->next;
+   } 
+}
+if(count1<count2){
+   while(x--){
+       curr2=curr2->next;
+   } 
+}
+while(curr1!=NULL and curr2!=NULL){
+    if(curr1==curr2){
+        return curr1->data;
+    }
+    curr1=curr1->next;
+    curr2=curr2->next;
+}
+return -1;
+}
