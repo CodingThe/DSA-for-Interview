@@ -1,0 +1,21 @@
+ bool isPalindrome(Node *head)
+{
+    //Your code here
+     string v;
+        Node *temp=head;
+        while(temp){
+            v+=temp->data;
+            temp=temp->next;
+        }
+        int s=0;
+        int l=v.size()-1;
+        while(s<l){
+            if(v[s]!=v[l]){
+                return false;
+            }else{
+                s++;
+                l--;
+            }
+        }
+        return true;
+}
