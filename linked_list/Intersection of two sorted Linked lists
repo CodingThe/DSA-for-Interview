@@ -1,0 +1,29 @@
+Node* findIntersection(Node* head1, Node* head2) {
+    unordered_map<int,int> s;
+    Node* temp = head1;
+    Node* res = NULL;
+    
+    while (temp != NULL) {
+        s[temp->data]++;
+        temp = temp->next;
+    }
+        temp = head2;
+    Node* tail = NULL;
+    
+    while (temp != NULL) {
+        if (s.find(temp->data) != s.end() && s[temp->data] > 0) {
+            Node* newNode = new Node(temp->data);
+            s[temp->data]--;
+            if (res == NULL) {
+                res = newNode;
+                tail = res;
+            } else {
+                tail->next = newNode;
+                tail = newNode;
+            }
+        }
+        temp = temp->next;
+    }
+    
+    return res;
+}
