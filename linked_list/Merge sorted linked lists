@@ -1,0 +1,56 @@
+
+
+ 
+
+/* Link list Node
+struct Node {
+  int data;
+  struct Node *next;
+  
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};
+*/
+//Function to merge two sorted linked list.
+Node* sortedMerge(Node* head1, Node* head2)  
+{  
+    // code here
+    Node *remp=NULL;
+    Node *temp=remp;
+    while(head1!=NULL and head2!=NULL){
+        if(head1->data < head2->data){
+            if(remp == NULL){
+                remp = new Node(head1->data);
+                temp = remp;
+            } else {
+                temp->next = new Node(head1->data);
+                temp = temp->next;
+            }
+            head1 = head1->next;
+        }
+        else{
+            if(remp == NULL){
+                remp = new Node(head2->data);
+                temp = remp;
+            } else {
+                temp->next = new Node(head2->data);
+                temp = temp->next;
+            }
+            head2 = head2->next;
+        }
+    }
+    while(head1!=NULL){
+        temp->next = new Node(head1->data);
+        temp = temp->next;
+        head1 = head1->next;
+    }
+    while(head2!=NULL){
+        temp->next = new Node(head2->data);
+        temp = temp->next;
+        head2 = head2->next;
+    }
+    return remp;
+}  
+ 
