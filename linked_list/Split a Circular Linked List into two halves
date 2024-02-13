@@ -1,0 +1,28 @@
+void splitList(Node *head, Node **head1_ref, Node **head2_ref)
+{
+    // your code goes here
+int count=1;
+Node* temp=head;
+while(temp->next!=NULL){
+    count++;
+    temp=temp->next;
+}
+temp=head;
+if(count%2==0){
+    count=count/2;
+}
+else{
+  count=count/2+1;  
+}
+head1_ref=head;
+while(count--){
+    head1_ref=head1_ref->next;
+    temp=temp->next;
+    
+}
+head2_ref=head1_ref;
+while(temp!=head){
+     head2_ref=head2_ref->next;
+    temp=temp->next;
+    
+}
