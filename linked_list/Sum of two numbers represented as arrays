@@ -1,0 +1,17 @@
+	vector<int> findSum(vector<int> &a, vector<int> &b) {
+	    // code here
+ int carry = 0;
+    int i = a.size() - 1, j = b.size() - 1;
+    vector<int> sum;
+    
+    while (i >= 0 || j >= 0 || carry) {
+        int digit = carry;
+        if (i >= 0) digit += a[i--];
+        if (j >= 0) digit += b[j--];
+        sum.push_back(digit % 10);
+        carry = digit / 10;
+    }
+    
+    reverse(sum.begin(), sum.end());
+    return sum;
+	}
