@@ -1,0 +1,26 @@
+ int cal(int a,int b,string s){
+        if(s=="+"){
+            return a+b;
+        }
+        else if(s=="-"){
+            return a-b;
+        }
+        else if(s=="*"){
+            return a*b;
+        }
+        else{
+            return a/b;
+        }
+    }
+    int evalTree(node* root) {
+        // Your code here
+        if(root==NULL){
+            return 0;
+        }
+        if(root->left==NULL and root->right==NULL){
+            return stoi(root->data);
+        }
+        int left=evalTree(root->left);
+        int right=evalTree(root->right);
+        return cal(left,right,root->data);
+    }
