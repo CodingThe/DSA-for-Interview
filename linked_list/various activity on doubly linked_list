@@ -1,0 +1,96 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+    int data;
+    node* next;
+    node* prev;
+    node(int x){
+        data=x;
+        next=NULL;
+        prev= NULL;
+    }
+};
+node* insertbeg(node* head,int x){
+    node* temp=new node(x);
+    temp->next=head;
+    head->prev=temp;
+    return temp;
+}
+
+node* insertright(node* head,int x){
+    node* temp=new node(x);
+    node* curr=head;
+    while(curr->next!=NULL){
+        curr=curr->next;
+    }
+    temp->prev=curr;
+    curr->next=temp;
+    return head;
+}
+
+node* deleleft(node* head){
+
+    node* temp=head;
+    head=head->next;
+    delete temp;
+    return head;
+}
+
+node* deleright(node* head){
+
+    node* temp=head;
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    node* tem=temp->next;
+    temp->next=NULL;
+    delete tem;
+    return head;
+}
+
+void printdata(node* head){
+    node* temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+
+int main(){
+    node* head=new node(100);
+    node*  head1=new node(200);
+    node* head2= new node(300);
+    
+    head->next=head1;
+    head1->prev=head;
+    head1->next=head2;
+    head2->prev=head1;
+    
+    printdata(head);
+    cout<<endl;
+    
+    head=insertbeg(head,400);
+    printdata(head);
+    cout<<endl;
+    
+    
+    head=insertright(head,500);
+    printdata(head);
+    cout<<endl;
+    
+    
+    head=deleleft(head);
+    printdata(head);
+    cout<<endl;
+    
+   
+    head=deleleft(head);
+     printdata(head);
+      cout<<endl;
+    
+    head=deleright(head);
+    printdata(head);
+     cout<<endl;
+    
+    return 0;
+}
