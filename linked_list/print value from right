@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+    int data;
+    node* next;
+    node(int x){
+        data=x;
+        next=NULL;
+    }
+};
+void printr(node* head,int r){
+    int x=r;
+    node* temp=head;
+    while(x--){
+        temp=temp->next;
+    }
+    node* curr=head;
+    while(temp!=NULL){
+        curr=curr->next;
+        temp=temp->next;
+    }
+    cout<<curr->data<<endl;
+}
+int main(){
+    node* head=new node(100);
+    head->next=new node(200);
+    head->next->next=new node(200);
+    printr(head,2);
+    return 0;
+}
