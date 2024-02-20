@@ -1,0 +1,6 @@
+int heightte(node* root){
+    if (root==NULL){
+        return 0;
+    }
+    return max(heightte(root->left),heightte(root->right))+1;
+}
