@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct node{
+    int data;
+    node* left;
+    node* right;
+    node(int k){
+        data=k;
+        left=NULL;
+        right=NULL;
+    }
+};
+
+void inordtrav(node* root){
+    if(root!=NULL){
+    inordtrav(root->left);
+    cout<<root->data<<" ";
+    inordtrav(root->right);
+    }
+}
+
+void preordtrav(node* root){
+    if(root!=NULL){
+        cout<<root->data<<" ";
+        preordtrav(root->left);
+        preordtrav(root->right);
+    }
+}
+
+void postordtrav(node* root){
+    if(root!=NULL){
+       postordtrav(root->left);
+       postordtrav(root->right);
+       cout<<root->data<<" ";
+    }
+}
+
+int main(){
+    node* root=new node(100);
+    root->left=new node(200);
+    root->right=new node(300);
+    preordtrav(root);
+    cout<<endl;
+    inordtrav(root);
+    cout<<endl;
+    postordtrav(root);
+}
