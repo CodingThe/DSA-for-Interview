@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+    int data;
+    node* left;
+    node* right;
+    node(int x){
+        data=x;
+        left=NULL;
+        right=NULL;
+   }
+};
+
+void printlev(node* head,int k){
+    if(head==NULL){
+        return;
+    }
+    if(k==0){
+        cout<<head->data<<" ";
+    }
+    else{
+        printlev(head->left,k-1);
+        printlev(head->right,k-1);
+    }
+}
+int main(){
+     node* head=new node(100);
+     head->left=new node(200);
+     head->right=new node(300);
+     head->left->left=new node(400);
+     head->left->right=new node(500);
+     head->right->right=new node(700);
+    printlev(head,2);
+    
+    return 0;
+    
+}
