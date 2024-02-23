@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//tree structure creation
 struct node{
     int data;
     node* left;
@@ -11,27 +12,29 @@ struct node{
         right=NULL;
     }
 };
-
-void inordtrav(node* root){
-    if(root!=NULL){
-    inordtrav(root->left);
-    cout<<root->data<<" ";
-    inordtrav(root->right);
-    }
-}
-
-void preordtrav(node* root){
+// code for preorder traversal
+void preord(node* root){
     if(root!=NULL){
         cout<<root->data<<" ";
-        preordtrav(root->left);
-        preordtrav(root->right);
+        preord(root->left);
+        preord(root->right);
     }
 }
 
-void postordtrav(node* root){
+// code for inorder traversal
+void inord(node* root){
     if(root!=NULL){
-       postordtrav(root->left);
-       postordtrav(root->right);
+    inord(root->left);
+    cout<<root->data<<" ";
+    inord(root->right);
+    }
+}
+
+// code for inorder traversal
+void postord(node* root){
+    if(root!=NULL){
+       postord(root->left);
+       postord(root->right);
        cout<<root->data<<" ";
     }
 }
@@ -40,9 +43,9 @@ int main(){
     node* root=new node(100);
     root->left=new node(200);
     root->right=new node(300);
-    preordtrav(root);
+    preord(root);
     cout<<endl;
-    inordtrav(root);
+    inord(root);
     cout<<endl;
-    postordtrav(root);
+    postord(root);
 }
