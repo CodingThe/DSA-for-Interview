@@ -11,30 +11,57 @@ struct node{
    }
 };
 
+
+
 void printlev(node* head){
   if(head==NULL){
       return;
   }
-  queue<node*>q;
-  q.push(head);
-  q.push(NULL);
-  while(q.size()>1){
-      node* curr=q.front();
-      q.pop();
-      if(curr==NULL){
-          cout<<endl;
-          q.push(NULL);
-          continue;
+  queue<node*>q;                                
+  q.push(head);                             //storing head on the queue 
+  while(q.empty()==false){                  // traversing till queue become empty
+      int x=q.size();                       //taking size of current queue
+      for(int i=0;i<x;i++){                 //traversing tree for each node in queue till our current level size reached
+        node* curr=q.front();               //taking front most element from the queue
+          q.pop();                          //removing that node from the queue
+      cout<<curr->data<<" ";                //printing the current removed node's element   
+      if(curr->left!=NULL){                 //if curr node's left in tree is not null then will store it in queue
+          q.push(curr->left);               
       }
-      cout<<curr->data<<" ";
-      if(curr->left!=NULL){
-          q.push(curr->left);
-      }
-      if(curr->right!=NULL){
+      if(curr->right!=NULL){                 //if curr node's right in tree is not null then will store it in queue
           q.push(curr->right);
+      }  
       }
+      cout<<endl;                           //ending up current line after each level nodes got travered
   }
 }
+
+
+void printleftineachrow(node* head){
+  if(head==NULL){
+      return;
+  }
+  queue<node*>q;                                
+  q.push(head);                             //storing head on the queue 
+  while(q.empty()==false){                  // traversing till queue become empty
+      int x=q.size();                       //taking size of current queue
+      for(int i=0;i<x;i++){                 //traversing tree for each node in queue till our current level size reached
+        node* curr=q.front();               //taking front most element from the queue
+          q.pop();                          //removing that node from the queue
+      if(i==0) cout<<curr->data<<" ";       //(***Updation Point***)//printing the leftmost node's value in current level   
+      if(curr->left!=NULL){                 //if curr node's left in tree is not null then will store it in queue
+          q.push(curr->left);               
+      }
+      if(curr->right!=NULL){                 //if curr node's right in tree is not null then will store it in queue
+          q.push(curr->right);
+      }  
+      }
+      cout<<endl;                           //ending up current line after each level nodes got travered
+  }
+}
+
+
+
 int main(){
      node* head=new node(100);
      head->left=new node(200);
@@ -42,8 +69,13 @@ int main(){
      head->left->left=new node(400);
      head->left->right=new node(500);
      head->right->right=new node(700);
-    printlev(head);
-    
+    // cout<<"Printing the level orderdr traversal line by line"<<endl;
+    // printlev(head);
+    // cout<<endl;
+    cout<<"Printing the left view of the tree "<<endl;
+    printleftineachrow(head);
+
+
     return 0;
     
 }
