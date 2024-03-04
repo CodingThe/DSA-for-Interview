@@ -1,0 +1,31 @@
+    
+
+class Solution{
+public:    
+   bool isCompleteBT(Node* root){
+    if(root == NULL)
+        return true;
+    
+    queue<Node*> q;
+    q.push(root);
+    bool isNullFound = false;
+    
+    while(!q.empty()){
+        Node* curr = q.front();
+        q.pop();
+        
+        if(curr == NULL){
+            isNullFound = true;
+        } else {
+            if(isNullFound)
+                return false;
+            
+            q.push(curr->left);
+            q.push(curr->right);
+        }
+    }
+    
+    return true;
+}
+
+};
