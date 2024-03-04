@@ -1,0 +1,22 @@
+Node* prev=NULL;
+void BToDLL(Node* root, Node*& head) 
+{ 
+	// Base cases 
+	if (root == NULL) 
+		return; 
+
+	// Recursively convert left subtree 
+	BToDLL(root->left, head);
+
+	// Now, convert this node
+	if (prev == NULL) {
+		head = root;
+	} else {
+		root->left = prev;
+		prev->right = root;
+	}
+	prev = root;
+
+	// Recursively convert right subtree
+	BToDLL(root->right, head); 
+} 
