@@ -1,0 +1,16 @@
+string solve(Node *root, unordered_map<string, int> &m)
+    {
+        if(root==NULL) return "$";
+        string s=to_string(root->data)+solve(root->left,m)+solve(root->right,m);       //agar root node null hai to uski jagah empty $ use
+        m[s]++;                                                                        //kar rahe hai nhi to current root ko string me convert
+        return s;                                                                      //karke left right to call karke usko map me push kar rahe hai
+    }
+    int dupSub(Node *root) {
+         unordered_map<string, int> m;
+         solve(root, m);           
+         for(auto &val:m)
+         {
+             if(val.second>=2) return true;
+         }
+         return false;
+    }
