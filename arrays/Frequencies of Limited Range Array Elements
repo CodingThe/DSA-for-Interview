@@ -1,0 +1,17 @@
+  void frequencyCount(vector<int>& arr, int N, int P)
+{
+    // code here
+    map<int, int> mp;              //creat the map for storing count of each element
+    
+    for (int i = 0; i < N; i++) {
+        mp[arr[i]]++;               //increasing count of each element of arr in the map
+    }
+    
+    for (int i = 1; i <= N; i++) {  //starting a loop from 1 to N to store its value in arr
+        if (mp.find(i) != mp.end()) {//from the map
+            arr[i-1]=mp[i];          //if we find the presence of current element in map
+        } else {                    //we store its frequency 
+            arr[i-1]=0;             //else we are storing frequency of current element as 0
+        }
+    }
+}
