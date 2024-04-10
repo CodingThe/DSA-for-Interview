@@ -1,0 +1,87 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void merge(vector<int>& v, int l, int mid, int r) {
+
+    int n1 = mid - l + 1;
+    int n2 = r - mid;
+
+    vector<int> v1(n1);
+    vector<int> v2(n2);
+
+    // Copy elements to temporary arrays
+    for (int i = 0; i < n1; i++) {
+        v1[i] = v[l + i];
+    }
+    for (int i = 0; i < n2; i++) {
+        v2[i] = v[mid + 1 + i];
+    }
+
+    // Merge the two sorted arrays
+    int i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) {
+        if (v1[i] <= v2[j]) {
+            v[k] = v1[i];
+            i++;
+        } else {
+            v[k] = v2[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy remaining elements of v1 and v2, if any
+    while (i < n1) {
+        v[k] = v1[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        v[k] = v2[j];
+        j++;
+        k++;
+    }
+
+}
+
+void mergesort(vector<int>& v, int l, int r) { 
+
+    if (l < r) {
+        int mid = l + (r - l) / 2;
+        mergesort(v, l, mid);
+        mergesort(v, mid + 1, r);
+        merge(v, l, mid, r);
+    }
+}
+
+int main() {
+
+    int n;
+    cout << "Enter the number of elements: ";
+    cin >> n;
+
+    vector<int> v(n);
+    cout << "Enter the elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> v[i];
+    }
+
+    cout << "Before sorting: ";
+    for (int i = 0; i < n; i++) {
+        cout << v[i] << " ";
+    }
+    cout << endl;
+
+    mergesort(v, 0, n - 1);
+
+    cout << "After sorting: ";
+    for (int i = 0; i < n; i++) {
+        cout << v[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+
+}
